@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Muhammad Bintang Prabu Adinata | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: linear-gradient(145deg, #1a120b 0%, #0e0a07 100%);
+            font-family: 'Inter', sans-serif;
+            color: #f0ede8;
+            line-height: 1.4;
+            scroll-behavior: smooth;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #2a241f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c9a03d;
+            border-radius: 10px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 2rem 5rem;
+        }
+        .profile-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 4rem;
+            background: rgba(30, 22, 18, 0.65);
+            backdrop-filter: blur(10px);
+            border-radius: 3rem;
+            padding: 2rem;
+            border: 1px solid rgba(201, 160, 61, 0.3);
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+        }
+        .profile-left {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .avatar-placeholder {
+            width: 130px;
+            height: 130px;
+            background: linear-gradient(135deg, #b58b3a, #7a5a2a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 0 4px #c9a03d, 0 15px 25px rgba(0,0,0,0.3);
+            overflow: hidden;
+            background-color: #3e2c1c;
+        }
+        .avatar-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .name-title h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f5e6b0, #c9a03d, #ad8232);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .name-title p {
+            font-size: 1.2rem;
+            color: #d4bc8a;
+            margin-top: 0.5rem;
+        }
+        .badge-delegate {
+            background: #2e241b;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-left: 4px solid #c9a03d;
+            color: #ecd9a8;
+        }
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .social-links a {
+            color: #e7cf97;
+            font-size: 1.9rem;
+            transition: 0.2s;
+        }
+        .social-links a:hover {
+            color: #f5bc4e;
+            transform: translateY(-3px);
+        }
+        .achievement-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        .mun-card {
+            background: #1f1813;
+            border-radius: 2rem;
+            padding: 1.2rem 1.8rem;
+            text-align: center;
+            border-bottom: 3px solid #c9a03d;
+            transition: all 0.3s;
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.4);
+        }
+        .mun-card i {
+            font-size: 2.2rem;
+            color: #dbb459;
+            margin-right: 10px;
+        }
+        .mun-card span {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        .spotlight-section {
+            margin: 5rem 0;
+        }
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 600;
+            background: linear-gradient(120deg, #e9d6a3, #b78f3a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .film-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .film-card {
+            background: rgba(25, 18, 14, 0.8);
+            backdrop-filter: blur(6px);
+            border-radius: 2rem;
+            padding: 1rem;
+            width: 260px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            border: 1px solid rgba(201, 160, 61, 0.4);
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+            box-shadow: 0 15px 30px -10px black;
+        }
+        .film-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .film-card .rank-badge {
+            font-size: 1.9rem;
+            font-weight: 800;
+            background: #c9a03d30;
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            margin-bottom: 1rem;
+            color: #e7c468;
+        }
+        .film-card img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            border-radius: 1.2rem;
+            background: #2f241b;
+            margin-bottom: 0.8rem;
+            border: 2px solid #c7a042;
+        }
+        .film-card h3 {
+            font-size: 1.3rem;
+            margin: 0.5rem 0;
+        }
+        .film-card p {
+            font-size: 0.8rem;
+            color: #b99f6b;
+        }
+        .film-card.left { order: 1; }
+        .film-card.center { order: 2; transform: scale(1.02); border: 2px solid #e4bc6e; }
+        .film-card.right { order: 3; }
+        @media (max-width: 860px) {
+            .film-row { flex-direction: column; }
+            .film-card.left, .film-card.center, .film-card.right { order: unset; }
+        }
+        .media-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .media-item {
+            background: #1e1712;
+            border-radius: 1.8rem;
+            padding: 1.2rem;
+            width: 200px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            border-bottom: 2px solid #b68b38;
+        }
+        .media-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .media-item img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 1rem;
+            background: #35291d;
+            margin-bottom: 0.7rem;
+            border: 1px solid #aa823d;
+        }
+        .media-item h4 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .series-highlight {
+            background: linear-gradient(115deg, #1f1711, #2f231b);
+            border-radius: 2rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .series-highlight.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .cartoon-img {
+            max-width: 280px;
+            width: 100%;
+            border-radius: 1.2rem;
+            margin-top: 1rem;
+            border: 2px solid #c9a03d;
+            object-fit: cover;
+            height: 160px;
+        }
+        .connect-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 4rem 0 2rem;
+        }
+        .connect-card {
+            background: #231d17;
+            border-radius: 2rem;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.2s;
+            border: 1px solid #ba923f;
+            text-decoration: none;
+            color: white;
+        }
+        .connect-card i {
+            font-size: 2rem;
+            color: #dbb459;
+        }
+        .connect-card span {
+            font-weight: 600;
+        }
+        .connect-card:hover {
+            background: #34281f;
+            transform: scale(1.02);
+        }
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #3e2c1e;
+            color: #9b875c;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- PROFILE SECTION -->
+    <div class="profile-wrapper">
+        <div class="profile-left">
+            <div class="avatar-placeholder">
+                <!-- FILE NAME: "ADA1" -->
+                <img src="ADA1" alt="Muhammad Bintang Prabu Adinata profile picture">
+            </div>
+            <div class="name-title">
+                <h1>Muhammad Bintang Prabu Adinata</h1>
+                <p><i class="fas fa-globe-asia"></i> MUN Delegate: Australia · Syria · Romania</p>
+                <div class="badge-delegate">
+                    <i class="fas fa-medal"></i> Young Programmer & Orator
+                </div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/apple_enjoyers34/?utm_source=ig_web_button_share_sheet" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://l.instagram.com/?u=https%3A%2F%2Fopen.spotify.com%2Fuser%2F31ykgjubcigcvgv2pvvsbe32zmxy%3Fsi%3D2UtsRCpARV6BH_R1I-70Mw%26utm_source%3Dig%26utm_medium%3Dsocial%26utm_content%3Dlink_in_bio%26fbclid%3DPAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnI0M8KGAuqt2HfyIFV406P1DzEtxtW2vaXoSFCP8DxyOM58rzBGOf1MF4PWY_aem_36TqNLKs0fTQgMPRUENWWQ&e=AT7Mc4PQrHPm2KPeESarDJnR93UnHD5DQyTdTk4nskkGEgWlKxkEmHashukvOlfGyRgCiA9xe2z-B5SqYycci0aYBLx_s--8AIhda9DyQQ" target="_blank"><i class="fab fa-spotify"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="achievement-grid">
+            <div class="mun-card"><i class="fas fa-flag-checkered"></i> <span>Australia Delegate</span><br>MUN 2023</div>
+            <div class="mun-card"><i class="fas fa-dove"></i> <span>Syria Delegate</span><br>MUN 2024</div>
+            <div class="mun-card"><i class="fas fa-landmark"></i> <span>Romania Delegate</span><br>MUN 2025</div>
+        </div>
+    </div>
+
+    <!-- FILM SPOTLIGHT: #1 middle (Dead Poets Society), #2 left (Forest Gump), #3 right (10 Things I Hate About You) -->
+    <div class="spotlight-section">
+        <div class="section-title"><i class="fas fa-film"></i> My Top 3 Films</div>
+        <div class="film-row">
+            <!-- #2 Forest Gump - LEFT | FILE NAME: "FO" -->
+            <div class="film-card left scroll-animate">
+                <div class="rank-badge">#2 ★ Forrest Gump</div>
+                <img src="FO" alt="Forrest Gump movie poster">
+                <h3>Forrest Gump</h3>
+                <p>"Life is like a box of chocolates"</p>
+            </div>
+            <!-- #1 Dead Poets Society - MIDDLE | FILE NAME: "DE" -->
+            <div class="film-card center scroll-animate">
+                <div class="rank-badge">#1 🎭 Dead Poets Society</div>
+                <img src="DE" alt="Dead Poets Society movie poster">
+                <h3>Dead Poets Society</h3>
+                <p>Carpe Diem · Seize the day</p>
+            </div>
+            <!-- #3 10 Things I Hate About You - RIGHT | FILE NAME: "10" -->
+            <div class="film-card right scroll-animate">
+                <div class="rank-badge">#3 💔 10 Things I Hate About You</div>
+                <img src="10" alt="10 Things I Hate About You movie poster">
+                <h3>10 Things I Hate About You</h3>
+                <p>Sharp wit & 90s romance</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- GAMES SECTION -->
+    <div class="section-title"><i class="fas fa-gamepad"></i> Games I Love</div>
+    <div class="media-grid">
+        <!-- Resident Evil & Requiem pakai file "w" -->
+        <div class="media-item scroll-animate">
+            <img src="w" alt="Resident Evil">
+            <h4>Resident Evil</h4>
+        </div>
+        <div class="media-item scroll-animate">
+            <img src="w" alt="Requiem">
+            <h4>Requiem</h4>
+        </div>
+        <!-- Fallout: "f1" -->
+        <div class="media-item scroll-animate">
+            <img src="f1" alt="Fallout">
+            <h4>Fallout</h4>
+        </div>
+        <!-- Call of Duty Modern Warfare: "Ca" -->
+        <div class="media-item scroll-animate">
+            <img src="Ca" alt="Call of Duty Modern Warfare">
+            <h4>Call of Duty MW</h4>
+        </div>
+    </div>
+
+    <!-- SERIES SECTION -->
+    <div class="section-title"><i class="fas fa-tv"></i> Series That Inspire Me</div>
+    <div class="media-grid">
+        <!-- Breaking Bad: "BRE" -->
+        <div class="media-item scroll-animate">
+            <img src="BRE" alt="Breaking Bad">
+            <h4>Breaking Bad</h4>
+        </div>
+        <!-- Mr Robot: "Mr robot" (dengan spasi, sesuai request) -->
+        <div class="media-item scroll-animate">
+            <img src="Mr robot" alt="Mr Robot">
+            <h4>Mr. Robot</h4>
+        </div>
+        <!-- Better Call Saul: "Be" -->
+        <div class="media-item scroll-animate">
+            <img src="Be" alt="Better Call Saul">
+            <h4>Better Call Saul</h4>
+        </div>
+    </div>
+
+    <!-- CARTOON: Smiling Friends (Adult Swim) | FILE NAME: "dowload (1)" -->
+    <div class="series-highlight scroll-animate">
+        <i class="fas fa-laugh-beam" style="font-size: 2rem; color: #eec45a;"></i>
+        <h3 style="margin: 0.5rem 0;">⭐ Favorite Cartoon ⭐</h3>
+        <p style="font-size: 1.2rem; font-weight: bold;">Smiling Friends (Adult Swim)</p>
+        <img src="dowload (1)" alt="Smiling Friends cartoon" class="cartoon-img">
+    </div>
+
+    <!-- SOCIAL LINKS -->
+    <div class="connect-links">
+        <a href="https://www.instagram.com/apple_enjoyers34/?utm_source=ig_web_button_share_sheet" target="_blank" class="connect-card">
+            <i class="fab fa-instagram"></i> <span>Instagram: @apple_enjoyers34</span>
+        </a>
+        <a href="https://l.instagram.com/?u=https%3A%2F%2Fopen.spotify.com%2Fuser%2F31ykgjubcigcvgv2pvvsbe32zmxy%3Fsi%3D2UtsRCpARV6BH_R1I-70Mw%26utm_source%3Dig%26utm_medium%3Dsocial%26utm_content%3Dlink_in_bio%26fbclid%3DPAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnI0M8KGAuqt2HfyIFV406P1DzEtxtW2vaXoSFCP8DxyOM58rzBGOf1MF4PWY_aem_36TqNLKs0fTQgMPRUENWWQ&e=AT7Mc4PQrHPm2KPeESarDJnR93UnHD5DQyTdTk4nskkGEgWlKxkEmHashukvOlfGyRgCiA9xe2z-B5SqYycci0aYBLx_s--8AIhda9DyQQ" target="_blank" class="connect-card">
+            <i class="fab fa-spotify"></i> <span>My Spotify Profile</span>
+        </a>
+    </div>
+    <footer>
+        <i class="fas fa-code"></i> young programmer · MUN enthusiast · "Carpe Diem" <br>
+        Brown · Silver · Gold Aesthetic
+    </footer>
+</div>
+
+<script>
+    // INTERSECTION OBSERVER FOR SCROLL ANIMATIONS
+    const animatedElements = document.querySelectorAll('.scroll-animate');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2, rootMargin: "0px 0px -30px 0px" });
+    
+    animatedElements.forEach(el => observer.observe(el));
+    
+    window.addEventListener('load', () => {
+        animatedElements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 80) {
+                el.classList.add('visible');
+                observer.unobserve(el);
+            }
+        });
+    });
+</script>
+</body>
+</html>
